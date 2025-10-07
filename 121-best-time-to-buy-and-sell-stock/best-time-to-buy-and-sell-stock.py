@@ -5,6 +5,8 @@ class Solution:
         for i in range(1,len(prices)):
             if(prices[i] < min_price):
                 min_price = prices[i]
-            elif(prices[i] - min_price > max_profit):
-                max_profit = prices[i] - min_price
+            profit = prices[i] - min_price
+            max_profit =max(max_profit, profit)
+            # elif(prices[i] - min_price > max_profit):
+            #     max_profit = prices[i] - min_price
         return max_profit
