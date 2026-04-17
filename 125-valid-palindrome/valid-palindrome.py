@@ -1,18 +1,22 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        left, right = 0, len(s) - 1
-        
-        while left < right:
-            while left < right and not s[left].isalnum():
-                left += 1
-            
-            while left < right and not s[right].isalnum():
-                right -= 1
-            
-            if s[left].lower() != s[right].lower():
-                return False
-            
-            left += 1
-            right -= 1
-        
-        return True
+        def helper(start, end):
+
+            # this is base condition where to stop calling recursion 
+            if start >= end:
+                return True
+
+            print("start: ", start)
+            # skipping all non alphanumeric characters for start 
+            while not s[start].isalnum() and start < end:
+                start += 1
+
+            print("end: ", end)
+            # skipping all non alphanumeric characters for end pointer 
+            while end > start and (not s[end].isalnum()):
+                end -= 1
+
+            # return and recursive call
+            return (s[start].lower() == s[end].lower()) and helper(start + 1, end - 1)
+
+        return helper(0, len(s)-1)
